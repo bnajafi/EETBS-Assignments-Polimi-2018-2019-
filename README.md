@@ -5,7 +5,7 @@ So first fork this Repo, then go to your forked respository and clone it into yo
 git clone that Address
 
 Then before adding your files inside this folder, run this:
-git pull origin master 
+git pull https://github.com/bnajafi/EETBS-Assignments-Polimi-2018-2019- master 
 
 Then add your assignment inside the folder Assignment1 call it Assignment1_Mrossi.py
 
