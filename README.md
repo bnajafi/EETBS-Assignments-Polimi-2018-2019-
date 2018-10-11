@@ -15,3 +15,12 @@ git commit -m "adding assignment "
 git push
 
 Finally,  once it is added go to the pull request tab (in your own forked repsoitory and choose New pull request, then write a message and title and click create pull request and you are done !!
+
+
+IF you want to remove a file, just deleting and commiting is not enough !!!
+after you deleted it, you need to remove it by force!!
+
+git rm nameOFTheFile.py
+
+if it is a folder :
+git rm -r nameOFtheFOlder
