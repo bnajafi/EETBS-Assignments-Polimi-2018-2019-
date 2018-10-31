@@ -1,0 +1,2 @@
+# In assignment 5, you will use numpy based methodology to slve the same problem as that of assignment 2, (so no function no module!)
+# You are supposed to use the advantages of numpy which are vectorial operation and list comprehension (logical arrays) , so no for or if is allowed
