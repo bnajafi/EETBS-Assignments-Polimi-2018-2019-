@@ -28,7 +28,7 @@ R_gap = {"name":"air gap","type":"gap","eps1": 0.05, "eps2": 0.9, "length":0.02}
 
 RListFiber = [R_1,R_2,R_3,R_4,R_6,R_7,R_gap]
 RListWood = [R_1,R_2,R_3,R_5,R_6,R_7,R_gap]
-RList=[RListFiber,RListWood]
+RList_in_parallel=[{"name":RListFiber, "percentage":0.75},{"name":RListWood, "percentage":0.25}]
 
 def ResistanceInSeries(ListOfResistance):
     Rtot=0
@@ -60,29 +60,17 @@ def ResistanceInSeries(ListOfResistance):
         else:
             print("Pay attention that this resistance hasn't a valid type")
             print(anyR["name"])
-            
+        
     return {"Rtot":Rtot,"Results":Results}
 
-def CalculationOf_U (Rlist):
-    Utot_i=1/ResistanceInSeries(Rlist)["Rtot"]
-    return Utot_i
-    
-RList=[CalculationOf_U(RListFiber),CalculationOf_U(RListWood)]    
-RpercentageList={"RListWood": {"value":0.25}, "RListFiber": {"RlistPercentage":0.75}}
 
-UTot=0
-for anyList in RList:
-    UTot=UTot+RpercentageList[anyList]["value"]*anyList
-
-
-
-def Calculate_Utot(Rlist, RlistPercentage):
+def Calculate_Utot(RListparallel):
      UTot=0
-     for anyList in Rlist:
-         UTot=UTot+RlistPercentage[anyList]["value"]*anyList
+     for anyList in RListparallel:
+         UTot=UTot+anyList["percentage"]*1/ResistanceInSeries(anyList["name"])["Rtot"] #Important: write brackets in the right positions
      return  UTot
 
-Utot=Calculate_Utot(RList, RpercentageList)
+Utot=Calculate_Utot(RList_in_parallel)
 Rtot=1/Utot
 Qtot=Utot*A*DT
 
