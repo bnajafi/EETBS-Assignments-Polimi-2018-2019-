@@ -25,7 +25,7 @@ R_o={"Name":"OutsideSurfaceWinter","type":"Conv","Material":"OutsideSurfaceWinte
 R_i={"Name":"inside surface","type":"Conv","Material":"InsideSurface"}
 R_gap ={"name":"air-Gap","type":"Gap","epsilon1":0.05,"epsilon2":0.9,"length":0.020}
 
-def epsilonEffective(epsilon1=0.05, epsilon2=0.9):
+def epsilonEffective(epsilon1=0.9, epsilon2=0.9):
     result=round(1/(1/epsilon1+1/epsilon2-1),2)  
     return result
     
