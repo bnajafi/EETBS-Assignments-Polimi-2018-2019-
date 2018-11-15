@@ -80,3 +80,15 @@ resistance_RValues[resistance_types=="cond"]=resistance_L[resistance_types=="con
 resistance_RValues[resistance_types=="conv"]=1.0/resistance_h[resistance_types=="conv"]/resistance_A[resistance_types=="conv"]
 Rtot=resistance_RValues.sum()    #WE CAN T DO IF AND FOR in the next assignment without the air gap 
 #far git pull per aggiornare ed avere la consegna dell esercizio
+
+#let's define an 2d Array: Matrices
+L1=[1.2,3.3,4.5]
+L2=[3.9,4.3,2.2]
+L3=[2.2,3.2,3.9]
+AA1=np.array([L1,L2,L3]) #It doesn't see the L2 so we have to call the element like a matrix, AA1[row,column]
+AA1[0,1]                 #It's like AA1=np.array([L1,[3.9,4.3,2.2],L3])
+AA1[:,1]
+AA1[2,:]
+AA1.sum()               #sum of all the elements in the matrix
+AA1.sum(axis=0)         #sum of the rows
+AA1.sum(axis=1)         #sum of the columns
