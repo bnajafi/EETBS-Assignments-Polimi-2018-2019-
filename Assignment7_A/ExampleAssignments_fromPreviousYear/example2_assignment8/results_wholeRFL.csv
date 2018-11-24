@@ -1,0 +1,9 @@
+Loads;Heating;Cooling
+Q_opaque;2483.03638884;1101.8070879
+Q_windows;2538.2304;3894.83192701
+Q_below;0.0;0.0
+Q_internalGain;0.0;620.0
+Q_infiltVentilation;2663.4140544;474.0496752
+Q_distribLosses;999.0;1644.0
+Q_sensible_tot;8683.68084324;7734.68869011
+Q_latent;0.0;667.387894511
