@@ -2,7 +2,7 @@ import sys
 import os
 ThisFileDirectory=os.path.dirname(sys.argv[0])
 os.chdir(ThisFileDirectory)
-print os.getcwd()  #printing the working directory
+print os.getcwd()  
 
 import numpy as np
 import pandas as pd
