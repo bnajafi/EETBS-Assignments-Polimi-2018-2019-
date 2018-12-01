@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>Assignment 7a</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>assignment 7a_funaro</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11774,7 +11774,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Assignment_7B_Eleonora">Assignment_7B_Eleonora<a class="anchor-link" href="#Assignment_7B_Eleonora">&#182;</a></h1>
+<h1 id="Assignment_7A_funaro">Assignment_7A_funaro<a class="anchor-link" href="#Assignment_7A_funaro">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -11949,33 +11949,7 @@ div#notebook {
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>C:\Users\Nora\AppData\Local\Enthought\Canopy32\edm\envs\User\lib\site-packages\ipykernel
-</pre>
-</div>
-</div>
 
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>FunctionsOpaque.py:20: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  inputWalls[&#34;Rvalue&#34;][index] = materials[&#34;R&#34;][currentMterialID]
-FunctionsOpaque.py:22: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  inputWalls[&#34;Rvalue&#34;][index] = materials[&#34;R&#34;][currentMterialID] * inputWalls[&#34;lenght&#34;][index] / materials[&#34;Thickness&#34;][currentMterialID]
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
 This is the value of Uwall_winter: 0.43850303851  W/(m^2 * K)
 This is the value of Udoor_winter: 1.69491525424  W/(m^2 * K)
 This is the value of Uceiling: 0.3  W/(m^2 * K)
@@ -11985,86 +11959,13 @@ This is the value of Uceiling: 0.3  W/(m^2 * K)
 This is the value of Uwall_summer: 0.43528869677  W/(m^2 * K)
 This is the value of Udoor_summer: 1.65562913907  W/(m^2 * K)
 This is the value of Uceiling: 0.3  W/(m^2 * K)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>FunctionsOpaque.py:98: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  opaque_DataFrame[&#34;Area&#34;][&#34;Walls&#34;]= opaque_DataFrame[&#34;width&#34;][&#34;Walls&#34;] *opaque_DataFrame[&#34;h&#34;][&#34;Walls&#34;] - AtotWindows - opaque_DataFrame[&#34;Area&#34;][&#34;Doors&#34;]
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>	This is the opaque cooling load: 1071.44121901 W
+	This is the opaque cooling load: 1071.44121901 W
 
 The total amount of the heating load for the windows is 1269.7848 W.
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>fenestration_functions.py:103: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  WindowsDataFrame[&#34;Tx&#34;][index] = 1
-fenestration_functions.py:105: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  WindowsDataFrame[&#34;Tx&#34;][index] = 0.64
-fenestration_functions.py:118: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  WindowsDataFrame[&#34;Fshd&#34;][index] = min([1,max([0,((SLF_currentvalue*WindowsDataFrame[&#34;Doh&#34;][index]-WindowsDataFrame[&#34;Xoh&#34;][index])/WindowsDataFrame[&#34;Height&#34;][index])])])
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The interior shading for this window is not included in the library
 The interior shading for this window is not included in the library
 The interior shading for this window is not included in the library
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>fenestration_functions.py:153: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  WindowsDataFrame[&#34;IAC&#34;][index] = 1.0+WindowsDataFrame[&#34;Fcl&#34;][index]*(IACcl-1.0)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The interior shading for this window is not included in the library
+The interior shading for this window is not included in the library
+The interior shading for this window is not included in the library
 The total amount of the cooling load for the windows is 1848.94495772 W.
 
 This is the value of sensible internal gain: 540.8 W.
