@@ -69,6 +69,14 @@ plt.xlabel("time")
 plt.ylabel("Generation W")
 plt.show()
 
+fig,ax=plt.subplots(3) #figure s the all frame, ax is a list with the name of which is associated the axes
+ax[0].DF_irradiance_may.plot()
+ax[1].DF_Temperature_may.plot()
+ax[3].DF_consumption.plot()
+
+
+
+
 #TEMPERATURE NORMALIZATION
 temp_min=DF_Temperature_may["temperature"].min()
 temp_max=DF_Temperature_may["temperature"].max()
