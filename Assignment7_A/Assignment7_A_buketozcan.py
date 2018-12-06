@@ -1,8 +1,5 @@
-import sys
 import os
-ThisFileDirectory=os.path.dirname(sys.argv[0])
-os.chdir(ThisFileDirectory)
-print os.getcwd()  #printing the working directory
+os.chdir(r"/Users/apple/Desktop/EETBS-Assignments-Polimi-2018-2019-/Assignment7_A/ExampleAssignments_fromPreviousYear/example1_assignment8")
 
 import numpy as np
 import pandas as pd
@@ -17,15 +14,12 @@ import psySI as SI
 import latent_functions as lat
 
 #Weather Inputs of Piacenza:
-Folder_whereThoseTablesAre = r"C:\Users\Famiglia\Documents\Manuel\Polimi\MAGISTRALE\PRIMO ANNO\Primo semestre\Bezhad\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
-os.chdir(Folder_whereThoseTablesAre)
+
 inputs_DF = pd.read_csv("input_weather_Piacenza.csv",sep=";",index_col=0)
 inputs_list = func.weather_data_calculator(inputs_DF)
 
     
 def solverr(wallwinter,wallsummer,Windows):
-    Folder_whereThoseTablesAre = r"C:\Users\Famiglia\Documents\Manuel\Polimi\MAGISTRALE\PRIMO ANNO\Primo semestre\Bezhad\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
-    os.chdir(Folder_whereThoseTablesAre)
     # Opaque surfaces Calculation:
     numericalDataDF = pd.read_csv("input_numerical_data.csv",sep=";",index_col= 0)   #numerical
     dataDF = pd.read_csv("input_data.csv",sep=";",index_col= 0)     #string
@@ -101,8 +95,6 @@ def solverr(wallwinter,wallsummer,Windows):
 
 #function to form a piechart for all different variations of wall and fens data (parametric analysis)
 def piecharts(parameter1,parameter2,parameter3):
-    Folder_whereThoseTablesAre = r"C:\Users\Famiglia\Documents\Manuel\Polimi\MAGISTRALE\PRIMO ANNO\Primo semestre\Bezhad\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
-    os.chdir(Folder_whereThoseTablesAre)
     labels=['opaque','windows','below','internalgain','infilventilation','distloss']
     cols=["b","maroon","goldenrod","g","r","slateblue"]
     x=parameter1[parameter2]
@@ -114,8 +106,6 @@ def piecharts(parameter1,parameter2,parameter3):
 
 #function to form a bar chart to compare the loads of the base case with that of the parametric variations    
 def barcharts(parameter1,parameter2,parameter3,parameter4,modifier1,modifier2):
-    Folder_whereThoseTablesAre = r"C:\Users\Famiglia\Documents\Manuel\Polimi\MAGISTRALE\PRIMO ANNO\Primo semestre\Bezhad\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
-    os.chdir(Folder_whereThoseTablesAre)
     items = [1,2,3]
     types = ["Base",modifier1,modifier2]
     plt.figure()
