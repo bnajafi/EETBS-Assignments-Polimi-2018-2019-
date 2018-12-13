@@ -1,14 +1,17 @@
 import sys
 import os
-ThisFileDirectory=os.path.dirname(sys.argv[0])
-os.chdir(ThisFileDirectory)
-print os.getcwd()
+ExternalFileFolder=r"C:\Users\Nora\Documents\Piacenza\Building systems\Python\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
+os.chdir(ExternalFileFolder) 
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy as sp
 
+path_inpuOpaque=os.path.join(ExternalFileFolder,"input_opaque.csv")
+path_alfaValue=os.path.join(ExternalFileFolder,"alfa_value.csv")
+path_OFValues=os.path.join(ExternalFileFolder,"OF_values.csv")
+path_DatFrameModified=os.path.join(ExternalFileFolder,"opaque_DataFrame_modified.csv")
 
 def R_input_calculator(inputWalls,materials): 
     for index in inputWalls.index.tolist():
@@ -68,13 +71,13 @@ def Utot_door_Calculator(inputDF,materials):
 
     
 def QtotOpaque_summer_calculator(h_windows,w_windowsS,w_windowsE,w_windowsW,UWallSummer,UCeiling,UDoorSummer,colourRoof,materialRoof,deltaTCooling,DRcooling,wallsSurfaceType,ceilingSurfaceType,doorsSurfaceType):
-    opaque_DataFrame = pd.read_csv("input_opaque.csv",sep=";",index_col= 0)
+    opaque_DataFrame = pd.read_csv(path_inpuOpaque,sep=";",index_col= 0)
     Areas = Area_calculator(h_windows,w_windowsS,w_windowsE,w_windowsW)
     opaque_DataFrame["Area"]=Areas    
     opaque_DataFrame["Usummer"]=[UWallSummer,UCeiling,UDoorSummer]
-    alfa_DataFrame = pd.read_csv("alfa_value.csv",sep=";",index_col= 0)
+    alfa_DataFrame = pd.read_csv(path_alfaValue,sep=";",index_col= 0)
     alfa_roof=alfa_DataFrame[colourRoof][materialRoof]
-    OF_DataFrame = pd.read_csv("OF_values.csv",sep=";",index_col= 0)
+    OF_DataFrame = pd.read_csv(path_OFValues,sep=";",index_col= 0)
     OFb_1=14.3*alfa_roof-4.5
     OFb_2=38.3*alfa_roof-7
     OF_DataFrame["OFb"]=[OFb_1,OFb_2,8.2,0,0,0]
@@ -89,7 +92,7 @@ def QtotOpaque_summer_calculator(h_windows,w_windowsS,w_windowsE,w_windowsW,UWal
     
 
 def Area_calculator(h_windows,w_windowsS,w_windowsE,w_windowsW):
-    opaque_DataFrame = pd.read_csv("input_opaque.csv",sep=";",index_col= 0)
+    opaque_DataFrame = pd.read_csv(path_inpuOpaque,sep=";",index_col= 0)
     AtotWindows=h_windows*(w_windowsS+w_windowsE+w_windowsW)
     opaque_DataFrame.iloc[1:,2]= opaque_DataFrame["width"] *opaque_DataFrame["h"] 
     opaque_DataFrame["Area"]["Walls"]= opaque_DataFrame["width"]["Walls"] *opaque_DataFrame["h"]["Walls"] - AtotWindows - opaque_DataFrame["Area"]["Doors"]
@@ -98,13 +101,13 @@ def Area_calculator(h_windows,w_windowsS,w_windowsE,w_windowsW):
 
 
 def QtotOpaque_winter_calculator(h_windows,w_windowsS,w_windowsE,w_windowsW,UWallWinter,UCeiling,UDoorWinter,deltaTHeating):
-    opaque_DataFrame = pd.read_csv("input_opaque.csv",sep=";",index_col= 0)
+    opaque_DataFrame = pd.read_csv(path_inpuOpaque,sep=";",index_col= 0)
     Areas= Area_calculator(h_windows,w_windowsS,w_windowsE,w_windowsW)
     opaque_DataFrame["Area"]=Areas
     opaque_DataFrame["Uwinter"]=[UWallWinter,UCeiling,UDoorWinter]
     opaque_DataFrame["HF"]=opaque_DataFrame["Uwinter"]*deltaTHeating
     opaque_DataFrame["Q_winter"]=opaque_DataFrame["HF"]*opaque_DataFrame["Area"]
-    opaque_DataFrame.to_csv("opaque_DataFrame_modified.csv")
+    opaque_DataFrame.to_csv(path_DatFrameModified)
     Qtot_Opaque_winter=opaque_DataFrame["Q_winter"].sum()
     return Qtot_Opaque_winter
 

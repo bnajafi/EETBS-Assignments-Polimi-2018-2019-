@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 13 09:40:22 2017
-
-@author: Alice
-"""
 ##Python library to calculate psychrometric states of moist air taken from GitHUb
 
 

@@ -1,14 +1,19 @@
 import sys
 import os
-ThisFileDirectory=os.path.dirname(sys.argv[0])
-os.chdir(ThisFileDirectory)
-print os.getcwd()
 
+ExternalFileFolder=r"C:\Users\Nora\Documents\Piacenza\Building systems\Python\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
+os.chdir(ExternalFileFolder) 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy as sp
 import psySI as SI
+
+path_LeakageArea=os.path.join(ExternalFileFolder,"Leakage_Area.csv")
+path_IDFHeat=os.path.join(ExternalFileFolder,"IDF_heating.csv")
+path_IDFcool=os.path.join(ExternalFileFolder,"IDF_cooling.csv")
+path_resultsInfVent=os.path.join(ExternalFileFolder,"results_infvent_empty.csv")
+path_resultsDistLoss=os.path.join(ExternalFileFolder,"results_distloss_empty.csv")
 
 
 #Internal Gain, Sensible Load
@@ -23,14 +28,14 @@ def Qig_s_Calculation(Acf,Nbr):
 #Infiltration, Sensible Load
 
 def Leakage_Area_calc(Exposed_surf_Area,type_of_construction):
-    unit_leakage_Area = pd.read_csv("Leakage_Area.csv",sep = ";",index_col=0)
+    unit_leakage_Area = pd.read_csv(path_LeakageArea,sep = ";",index_col=0)
     As = Exposed_surf_Area
     Al = unit_leakage_Area["Aul "][type_of_construction]
     LeaK_Area = Al*As
     return LeaK_Area
 
 def Idf_Heating_calc(h_house,T_outdoor_heating):
-    idf_table_heating = pd.read_csv("IDF_heating.csv",sep = ";",index_col=0)
+    idf_table_heating = pd.read_csv(path_IDFHeat,sep = ";",index_col=0)
     name_of_columns = idf_table_heating.columns.get_values()#(-40,-30...)
     name_of_columns_as_numbers = name_of_columns.astype(np.int32, copy=False)
     name_of_index = idf_table_heating.index.get_values()
@@ -75,7 +80,7 @@ def inf_air_flo_rate_heat_calc(Exposed_surf_Area,type_const,h_house,T_outdoor):
     return inf_air_flo_rate_heat
 
 def Idf_Cooling_calc(h_house,T_outdoor_cooling):
-    idf_table_cooling = pd.read_csv("IDF_cooling.csv",sep = ";",index_col=0)   
+    idf_table_cooling = pd.read_csv(path_IDFcool,sep = ";",index_col=0)   
     name_of_columns = idf_table_cooling.columns.get_values()
     name_of_columns_as_numbers = name_of_columns.astype(np.int32, copy=False)
     name_of_index = idf_table_cooling.index.get_values()
@@ -188,7 +193,7 @@ def inf_vent_load_calc(input_data_inf_vent):
     q_vi_s_heating = sens_iv_load_calc_heat(VI_fr_heating,Cs,Eps,Q_bal_fr,Q_bal_ot_fr,Dt_heating)
     q_vi_s_cooling = sens_iv_load_calc_cool(VI_fr_cooling,Cs,Eps,Q_bal_fr,Q_bal_ot_fr,Dt_cooling)
     Internal_gain = Qig_s_Calculation(A_cond_floor,Nbr)   #only cooling
-    results_F = pd.read_csv("results_infvent_empty.csv",sep = ";",index_col=0)
+    results_F = pd.read_csv(path_resultsInfVent,sep = ";",index_col=0)
     results_F.iloc[0][0] = A_eff_l_a
     results_F.iloc[1][0] = IDF_cooling
     results_F.iloc[2][0] = IDF_heating

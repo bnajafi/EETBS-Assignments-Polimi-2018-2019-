@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Jan 14 00:19:07 2017
-
-@author: Alice
-"""
 #Changing the working directory 
 import sys
 import os
-ThisFileDirectory=os.path.dirname(sys.argv[0])
-os.chdir(ThisFileDirectory)
-print (os.getcwd())
+
+ExternalFileFolder=r"C:\Users\Nora\Documents\Piacenza\Building systems\Python\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
+os.chdir(ExternalFileFolder) 
+path_Ediffuse=os.path.join(ExternalFileFolder,"Ediffuse.csv")
+path_ED=os.path.join(ExternalFileFolder,"ED.csv")
+path_SLF=os.path.join(ExternalFileFolder,"SLF.csv")
+path_FFs=os.path.join(ExternalFileFolder,"FFs.csv")
+path_IACcl=os.path.join(ExternalFileFolder,"IACcl.csv")
+
 
 import numpy as np
 import pandas as pd
@@ -77,7 +78,7 @@ def SHGC_finder(WindowsDataFrame):
     return SHGCvalues
 
 def Ed_finder(WindowsDataFrame,inputsList):
-    Ediffuse_DF = pd.read_csv("Ediffuse.csv",sep=";",index_col=0) #import table
+    Ediffuse_DF = pd.read_csv(path_Ediffuse,sep=";",index_col=0) #import table
     latitudes = Ediffuse_DF.columns.get_values() #latitude list
     latitudes_as_numbers = latitudes.astype(np.int32, copy=False)
     Edvalues = []
@@ -87,7 +88,7 @@ def Ed_finder(WindowsDataFrame,inputsList):
     return Edvalues
 
 def ED_finder(WindowsDataFrame,inputsList):
-    Ebeam_DF = pd.read_csv("ED.csv",sep=";",index_col=0)
+    Ebeam_DF = pd.read_csv(path_ED,sep=";",index_col=0)
     latitudes = Ebeam_DF.columns.get_values()#latitude list
     latitudes_as_numbers = latitudes.astype(np.int32, copy=False)
     EDvalues = []
@@ -108,7 +109,7 @@ def Tx_finder(WindowsDataFrame):
     return WindowsDataFrame["Tx"]
 
 def Fshd_calculator(WindowsDataFrame,inputsList):
-    SLF_DF = pd.read_csv("SLF.csv",sep=";",index_col=0)
+    SLF_DF = pd.read_csv(path_SLF,sep=";",index_col=0)
     SLF_column = SLF_DF.columns.get_values()
     SLF_column_as_numbers = SLF_column.astype(np.int32, copy=False)     #vector (20,25,30,35...) latitude
     SLFvalues = []
@@ -128,7 +129,7 @@ def PXI_calculator(WindowsDataFrame,inputsList):
     return WindowsDataFrame["PXI"] 
 
 def FFs_finder(WindowsDataFrame):
-    FFs_DF = pd.read_csv("FFs.csv",sep=";",index_col=0)
+    FFs_DF = pd.read_csv(path_FFs,sep=";",index_col=0)
     FFsvalues =[]
     for index in WindowsDataFrame.index.tolist():
         TypeBuilding = WindowsDataFrame["Type Building"][index]
@@ -142,7 +143,7 @@ def FFs_finder(WindowsDataFrame):
     return FFsvalues
 
 def IAC_calculator(WindowsDataFrame):
-    IACcl_DF = pd.read_csv("IACcl.csv",sep=";",index_col=0)
+    IACcl_DF = pd.read_csv(path_IACcl,sep=";",index_col=0)
     IACclvalues = []
     for index in WindowsDataFrame.index.tolist():
         if (WindowsDataFrame["IntShading ID"][index] in IACcl_DF.columns.tolist()):

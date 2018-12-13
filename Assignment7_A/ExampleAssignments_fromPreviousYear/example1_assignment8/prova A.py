@@ -1,8 +1,11 @@
+#assignment 7a
+#funaro_eleonora
+
 import sys
 import os
-ThisFileDirectory=os.path.dirname(sys.argv[0])
-os.chdir(ThisFileDirectory)
-print os.getcwd()  #printing the working directory
+
+ExternalFileFolder=r"C:\Users\Nora\Documents\Piacenza\Building systems\Python\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
+os.chdir(ExternalFileFolder) 
 
 import numpy as np
 import pandas as pd
@@ -17,19 +20,20 @@ import psySI as SI
 import latent_functions as lat
 
 #Weather Inputs of Piacenza:
-Folder_whereThoseTablesAre = r"C:\Users\Famiglia\Documents\Manuel\Polimi\MAGISTRALE\PRIMO ANNO\Primo semestre\Bezhad\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
-os.chdir(Folder_whereThoseTablesAre)
-inputs_DF = pd.read_csv("input_weather_Piacenza.csv",sep=";",index_col=0)
+path_inputWeather=os.path.join(ExternalFileFolder,"input_weather_Piacenza.csv")
+path_numericalData=os.path.join(ExternalFileFolder,"input_numerical_data.csv")
+path_inputData=os.path.join(ExternalFileFolder,"input_data.csv")
+path_resMaterials=os.path.join(ExternalFileFolder,"resistences_materials.csv")
+
+inputs_DF = pd.read_csv(path_inputWeather,sep=";",index_col=0)
 inputs_list = func.weather_data_calculator(inputs_DF)
 
     
 def solverr(wallwinter,wallsummer,Windows):
-    Folder_whereThoseTablesAre = r"C:\Users\Famiglia\Documents\Manuel\Polimi\MAGISTRALE\PRIMO ANNO\Primo semestre\Bezhad\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
-    os.chdir(Folder_whereThoseTablesAre)
     # Opaque surfaces Calculation:
-    numericalDataDF = pd.read_csv("input_numerical_data.csv",sep=";",index_col= 0)   #numerical
-    dataDF = pd.read_csv("input_data.csv",sep=";",index_col= 0)     #string
-    materials_DataFrame = pd.read_csv("resistences_materials.csv",sep=";",index_col= 1)   #materials and resistances
+    numericalDataDF = pd.read_csv(path_numericalData,sep=";",index_col= 0)   #numerical
+    dataDF = pd.read_csv(path_inputData,sep=";",index_col= 0)     #string
+    materials_DataFrame = pd.read_csv(path_resMaterials,sep=";",index_col= 1)   #materials and resistances
     inputWalls_DataFrame_winter = pd.read_csv(wallwinter,sep=";",index_col= 0)# reading the wallwinter data
     inputWalls_DataFrame_summer = pd.read_csv(wallsummer,sep=";",index_col= 0)# reading the wallsummer data
     inputDoor_DataFrame_winter = pd.read_csv("input_data_door_winter.csv",sep=";",index_col= 0)# reading the doorwinter data
@@ -101,8 +105,6 @@ def solverr(wallwinter,wallsummer,Windows):
 
 #function to form a piechart for all different variations of wall and fens data (parametric analysis)
 def piecharts(parameter1,parameter2,parameter3):
-    Folder_whereThoseTablesAre = r"C:\Users\Famiglia\Documents\Manuel\Polimi\MAGISTRALE\PRIMO ANNO\Primo semestre\Bezhad\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
-    os.chdir(Folder_whereThoseTablesAre)
     labels=['opaque','windows','below','internalgain','infilventilation','distloss']
     cols=["b","maroon","goldenrod","g","r","slateblue"]
     x=parameter1[parameter2]
@@ -114,8 +116,6 @@ def piecharts(parameter1,parameter2,parameter3):
 
 #function to form a bar chart to compare the loads of the base case with that of the parametric variations    
 def barcharts(parameter1,parameter2,parameter3,parameter4,modifier1,modifier2):
-    Folder_whereThoseTablesAre = r"C:\Users\Famiglia\Documents\Manuel\Polimi\MAGISTRALE\PRIMO ANNO\Primo semestre\Bezhad\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
-    os.chdir(Folder_whereThoseTablesAre)
     items = [1,2,3]
     types = ["Base",modifier1,modifier2]
     plt.figure()
@@ -143,7 +143,7 @@ piecharts(C,"Heating","wall++")
 piecharts(C,"Cooling","wall++")
 barcharts("Heating","Q_sensible_tot",B,C,"wall--","wall++")
 barcharts("Cooling","Q_sensible_tot",B,C,"wall--","wall++")
-barcharts("Cooling","Q_latent",B,C,"wall--","wall++")
+#barcharts("Cooling","Q_latent",B,C,"wall--","wall++")
 
 D=solverr("input_data_walls_winter.csv","input_data_walls_summer.csv","input_fenestration_1.csv")
 piecharts(D,"Heating","fen1")
@@ -155,4 +155,4 @@ piecharts(E,"Heating","fen2")
 piecharts(E,"Cooling","fen2")
 barcharts("Heating","Q_sensible_tot",D,E,"fen1","fen2")
 barcharts("Cooling","Q_sensible_tot",D,E,"fen1","fen2")
-barcharts("Cooling","Q_latent",D,E,"fen1","fen2")
+#barcharts("Cooling","Q_latent",D,E,"fen1","fen2")

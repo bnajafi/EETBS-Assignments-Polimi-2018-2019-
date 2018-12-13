@@ -7,9 +7,9 @@ Created on Mon Feb 13 10:03:53 2017
 
 import sys
 import os
-ThisFileDirectory=os.path.dirname(sys.argv[0])
-os.chdir(ThisFileDirectory)
-print os.getcwd()
+
+ExternalFileFolder=r"C:\Users\Nora\Documents\Piacenza\Building systems\Python\EETBS-Assignments-Polimi-2018-2019-\Assignment7_A\ExampleAssignments_fromPreviousYear\example1_assignment8"
+os.chdir(ExternalFileFolder) 
 
 import numpy as np
 import pandas as pd
